@@ -152,7 +152,7 @@ def _read_nodes(f):
     while True:
         last_pos = f.tell()
         line = f.readline()
-        if line.startswith("*"):
+        if line.startswith("*") or line == '':
             break
         entries = line.strip().split(",")
         gid, x = entries[0], entries[1:]
@@ -177,7 +177,7 @@ def _read_cells(f, line0):
     while True:
         last_pos = f.tell()
         line = f.readline()
-        if line.startswith("*"):
+        if line.startswith("*") or line == '':
             break
         entries = [int(k) for k in filter(None, line.split(","))]
         idx = entries[1:]
